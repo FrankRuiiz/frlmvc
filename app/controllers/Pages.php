@@ -1,14 +1,20 @@
 <?php
     class Pages extends Controller {
         public function __construct() {
+            // loads the model 
             $this->postModel = $this->model('Post');
         } 
 
         public function index() {
-            $data = 
-                ['title' => 'Welcome'
+            // calls model function get posts & set to a variable
+            $posts = $this->postModel->getPosts();
+
+            $data = [
+                'title' => 'Welcome',
+                'posts' => $posts
             ];
 
+            // pass variable from above to view
             $this->view('pages/index', $data );
         }
 
